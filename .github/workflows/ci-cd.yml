@@ -26,7 +26,9 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run tests
-        run: pytest
+        run: |
+          export PYTHONPATH=$(pwd)
+          pytest
 
   deploy:
     runs-on: ubuntu-latest
@@ -39,5 +41,5 @@ jobs:
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
         run: |
-          git remote add heroku https://git.heroku.com/<your-heroku-app>.git
+          git remote add heroku https://git.heroku.com/bdbao-ci-cd-project.git
           git push heroku main
