@@ -58,10 +58,6 @@ jobs:
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
         run: |
-          echo "machine api.heroku.com" > ~/.netrc
-          echo "  login $HEROKU_API_KEY" >> ~/.netrc
-          echo "machine git.heroku.com" >> ~/.netrc
-          echo "  login $HEROKU_API_KEY" >> ~/.netrc
           chmod 600 ~/.netrc
           git remote add heroku https://git.heroku.com/bdbao-ci-cd-project.git || true
 
