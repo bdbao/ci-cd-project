@@ -63,4 +63,5 @@ jobs:
 
       - name: Deploy to Heroku
         run: |
-          git push heroku main
+          # git push heroku main
+          git push https://heroku:$HEROKU_API_KEY@git.heroku.com/bdbao-ci-cd-project.git main
