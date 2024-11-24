@@ -59,7 +59,8 @@ jobs:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
         run: |
           echo "$HEROKU_API_KEY" | heroku auth:token > ~/.netrc
-          heroku git:remote -a bdbao-ci-cd-project
+          # heroku git:remote -a bdbao-ci-cd-project
+          git remote add heroku https://heroku:${{ secrets.HEROKU_API_KEY }}@git.heroku.com/bdbao-ci-cd-project.git
 
       - name: Deploy to Heroku
         run: |
