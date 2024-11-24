@@ -44,23 +44,23 @@ jobs:
   #         git remote add heroku https://git.heroku.com/bdbao-ci-cd-project.git
   #         git push heroku main
   deploy:
-  runs-on: ubuntu-latest
-  needs: test
-  steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Install Heroku CLI
-      run: |
-        curl https://cli-assets.heroku.com/install.sh | sh
+      - name: Install Heroku CLI
+        run: |
+          curl https://cli-assets.heroku.com/install.sh | sh
 
-    - name: Login to Heroku
-      env:
-        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-      run: |
-        echo "$HEROKU_API_KEY" | heroku auth:token > ~/.netrc
-        heroku git:remote -a bdbao-ci-cd-project
+      - name: Login to Heroku
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: |
+          echo "$HEROKU_API_KEY" | heroku auth:token > ~/.netrc
+          heroku git:remote -a bdbao-ci-cd-project
 
-    - name: Deploy to Heroku
-      run: |
-        git push heroku main
+      - name: Deploy to Heroku
+        run: |
+          git push heroku main
